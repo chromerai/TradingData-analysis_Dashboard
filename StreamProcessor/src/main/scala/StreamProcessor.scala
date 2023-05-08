@@ -35,7 +35,6 @@ object StreamProcessor {
             .master(settings.spark("master"))
             .appName(settings.spark("appName"))
             .config("spark.cassandra.connection.host",settings.cassandra("host"))
-            .config("spark.cassandra.connection.host",settings.cassandra("host"))
             .config("spark.cassandra.auth.username", settings.cassandra("username"))
             .config("spark.cassandra.auth.password", settings.cassandra("password"))
             .config("spark.sql.shuffle.partitions", settings.spark("shuffle_partitions"))
@@ -55,12 +54,12 @@ object StreamProcessor {
             .option("useDeprecatedOffsetFetching",settings.spark("deprecated_offsets"))
             .load()
 
-        // explode the data from Avro
+        // explode the data from JSON
         val expandedDF = inputDF
             .withColumn("avroData",from_avro(col("value"),tradesSchema))
             .select($"avroData.*")
             .select(explode($"data"),$"type")
-            .select($"col.*")
+            .select($"col.*",$"type")
 
         // rename columns and add proper timestamps
          val finalDF = expandedDF
@@ -76,6 +75,7 @@ object StreamProcessor {
         // write query to Cassandra
         val query = finalDF
             .writeStream
+            .trigger(Trigger.ProcessingTime("5 seconds"))
             .foreachBatch { (batchDF:DataFrame,batchID:Long) =>
                 println(s"Writing to Cassandra $batchID")
                 batchDF.write
@@ -83,6 +83,7 @@ object StreamProcessor {
                     .mode("append")
                     .save()
             }
+            // .format("console") //keeping this line commented for potential swift debugging
             .outputMode("update")
             .start()
 
@@ -110,6 +111,7 @@ object StreamProcessor {
                     .mode("append")
                     .save()
             }
+            // .format("console") //keeping this line commented for potential swift debugging
             .outputMode("update")
             .start()
         
