@@ -1,0 +1,13 @@
+version: '3'
+services:
+  producer:
+    build: .
+    container_name: producer
+    environment:
+      FINNHUB_API_TOKEN: "ch8mtupr01qtgm5dom2gch8mtupr01qtgm5dom30"
+      FINNHUB_STOCKS_TICKERS: "[\"BINANCE:BTCUSDT\",\"BINANCE:ETHUSDT\",\"BINANCE:XRPUSDT\",\"BINANCE:DOGEUSDT\", \"AAPL\", \"MSFT\", \"AMZN\"]"
+      FINNHUB_VALIDATE_TICKERS: "1"
+      KAFKA_SERVER: "localhost"
+      KAFKA_PORT: "9092"
+      KAFKA_TOPIC_NAME: "market"
+    network_mode: host
