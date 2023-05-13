@@ -1,5 +1,8 @@
 # TradingData-Dashboard
 
+```
+git clone --recurse-submodules git@github.com:ayush1399/TradingData-Dashboard.git
+```
 
 ```
 cd kafka
