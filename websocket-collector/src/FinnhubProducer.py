@@ -17,7 +17,9 @@ class FinnhubProducer:
         self.producer = load_producer(
             f"{os.environ['KAFKA_SERVER']}:{os.environ['KAFKA_PORT']}"
         )
-        self.avro_schema = load_avro_schema("/app/src/schemas/trades.avsc")
+        self.avro_schema = load_avro_schema(
+            "/home/bigdata/TradingData-Dashboard/websocketCollector/src/schemas/trades.avsc"
+        )
         self.tickers = ast.literal_eval(os.environ["FINNHUB_STOCKS_TICKERS"])
         self.validate = os.environ["FINNHUB_VALIDATE_TICKERS"]
         self.count = 0
