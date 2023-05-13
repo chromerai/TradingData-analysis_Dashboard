@@ -34,5 +34,3 @@ CREATE TABLE MSC(
     symbol text, 
     PRIMARY KEY((symbol), TIMESTAMP)
 );
-
-CREATE INDEX IF NOT EXISTS ON MSC (symbol);
