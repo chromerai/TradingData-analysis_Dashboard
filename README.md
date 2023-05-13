@@ -21,20 +21,20 @@ cqlsh -u cassandra -p cassandra -f ./cassandra-setup.cql
 ```
 
 ```
-cd StreamProcessor
+cd stream-processor
 docker compose up --build -d
 ```
 
 ```
-cd websocketCollector
+cd collector
 pip install requirements.txt
 source src/exp.sh
-python3 src/FinnhubProducer.py
+python3 src/producer.py
 ```
 
 ```
 docker-compose up -d 
-docker cp cassandra.properties d9a77:/opt/presto-server/etc/catalog/cassandra.properties
+docker cp cassandra.properties <container>:/opt/presto-server/etc/catalog/cassandra.properties
 docker exec -it <container> sh -c "ls /opt/presto-server/etc/catalog"
 
 docker exec -it <container> /bin/bash
