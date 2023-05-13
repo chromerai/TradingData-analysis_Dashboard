@@ -34,7 +34,7 @@ python3 src/FinnhubProducer.py
 
 ```
 docker-compose up -d 
-docker cp cassandra.properties <container>:/opt/presto-server/etc/catalog/cassandra.properties
+docker cp cassandra.properties d9a77:/opt/presto-server/etc/catalog/cassandra.properties
 docker exec -it <container> sh -c "ls /opt/presto-server/etc/catalog"
 
 docker exec -it <container> /bin/bash
@@ -42,4 +42,10 @@ presto-cli
 show catalogs;
 
 docker restart <container>
+```
+
+```
+cd superset
+docker-compose -f docker-compose-non-dev.yml pull
+docker-compose -f docker-compose-non-dev.yml up
 ```
