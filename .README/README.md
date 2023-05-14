@@ -6,6 +6,11 @@
     * Password: bigdatafinalproject
 * The Streamlit dashboard with the Monte Carlo based Geometric Brownian motion analysis of trade data can be accessed at the following link: http://155.138.134.6/streamlit
 ## Metrics
+* 10 records per second fetched from the websocket connection
+* 100 kb/sec of data being passed through the pipeline for visualization
+* 360 mb/hr of data being passed through the pipeline
+---
+**NOTE**: *above metrics are valid for pipeline being run for 7 tickers - AAPL, AMZN, MSFT, BINANCE:ETHUSDT, BINANCE:BTCUSDT, BINANCE:XRPUSDT, BINANCE:DOGEUSDT*
 ## Project Description
 ## Group Members
 * Ayushman Singh (as16513)
@@ -15,9 +20,9 @@
 * Shekhar Pandey (cp3793)
 
 ## Screenshots
- ### Superset Dashboard
+### Superset Dashboard
 [Superset Dashboard Screenshot](./.README/SupersetScreencap.jpg)
- ### Streamlit Dashboard
+### Streamlit Dashboard
 
 
 ## Setup Instructions
@@ -79,7 +84,17 @@ cqlsh -u cassandra -p cassandra -f ./cassandra-setup.cql
 ```
 
 ### Setting up the spark cluster and stream-processor
+If you don't have maven installed on your system, you can do so by the next block of commands.
 ```
+sudo apt-get update
+
+sudo apt-get install maven
+```
+
+Once maven is installed, proceed with the following commands:
+```
+mvn dependency:copy-dependencies
+
 cd stream-processor
 
 docker compose up --build -d
