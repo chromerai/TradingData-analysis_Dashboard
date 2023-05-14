@@ -16,7 +16,9 @@
 
 ## Screenshots
 ## Setup Instructions
+NOTE - The below commands were tested and verified on Debian 11 Bullseye system. Setting up the pipeline on a Mac or Windows machine may require changes to the configuration (host network bridging is only supported by docker in linux, and the services in the pipeline utilize it to communicate with each other).
 
+----
 First begin by cloning the repository using the following command to ensure all submodules are fetched correctly.
 ```
 git clone --recurse-submodules git@github.com:ayush1399/TradingData-Dashboard.git
