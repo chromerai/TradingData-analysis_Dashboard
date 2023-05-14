@@ -16,7 +16,7 @@
 
 ## Screenshots
  ### Superset Dashboard
-[Superset Dashboard Screenshot](./SupersetScreencap.jpg)
+[Superset Dashboard Screenshot](./.README/SupersetScreencap.jpg)
  ### Streamlit Dashboard
 
 
