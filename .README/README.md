@@ -187,3 +187,5 @@ pipenv shell
 
 pipenv install
 ```
+
+Finally it was set up a systemd service that respawns on error. The exec command for the service is: `streamlit run portfolio.py`
