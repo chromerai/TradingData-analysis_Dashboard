@@ -28,9 +28,10 @@ CREATE TABLE running_averages_15_sec(
 
 CREATE INDEX IF NOT EXISTS ON running_averages_15_sec (symbol);
 
-CREATE TABLE MSC( 
-    TIMESTAMP timestamp, 
-    GBM double, 
+CREATE TABLE msc( 
+    timestamp timestamp, 
+    gbm double,
+    actual double, 
     symbol text, 
     PRIMARY KEY((symbol), TIMESTAMP)
 );
