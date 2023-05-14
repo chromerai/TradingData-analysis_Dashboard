@@ -12,20 +12,12 @@ cf.set("spark.submit.deployMode","client")
 sc = SparkContext.getOrCreate(cf)
 
 
-#import findspark
-
-#findspark.init()
-
-#import pyspark
-
-
 # create a spark session
 spark = SparkSession.builder\
                     .appName('GBM')\
                     .master('spark://localhost:7077')\
                     .getOrCreate()
 
-#def get_rdd_values ():
 filters = 'WHERE symbol = APPL'
 df = spark.read \
        .format("org.apache.spark.sql.cassandra") \
@@ -36,10 +28,6 @@ df = spark.read \
        .option("keyspace", "market") \
        .option("table", "trades") \
        .load()
-#       .where(filters)
-#  return df
-
-#df = get_rdd_values()
 
 df = df.withColumn("price_volume_multiply", col("price")*col("volume"))
 
@@ -72,7 +60,7 @@ for ticker in TICKERS:
 
 	# calculate the daily return
 	sdf = sdf.withColumn('Prev_VAPR', lag('VAPR').over(window))
-	sdf = sdf.withColumn('Return', log(df['VAPR'] / df['Prev_VAPR']))
+	sdf = sdf.withColumn('Return', log(sdf['VAPR'] / sdf['Prev_VAPR']))
 
 	# calculate mean and standard deviation of the returns
 	mean_return = sdf.agg(mean('Return')).first()[0]
@@ -82,7 +70,7 @@ for ticker in TICKERS:
 	trading_interval = 3
 
 	# GBM formula
-	sdf = sdf.withColumn('gbm', df['VAPR'] * np.exp((mean_return - 0.5 * stddev_return ** 2) * trading_interval + stddev_return * np.sqrt(trading_interval) * np.random.normal()))
+	sdf = sdf.withColumn('gbm', sdf['VAPR'] * np.exp((mean_return - 0.5 * stddev_return ** 2) * trading_interval + stddev_return * np.sqrt(trading_interval) * np.random.normal()))
 
 	sdf = sdf.withColumnRenamed('Timestamp', 'timestamp')
 	sdf = sdf.withColumnRenamed('VAPR', 'actual')
@@ -100,6 +88,7 @@ for ticker in TICKERS:
 	else:
 		sdf.write \
 			.format('org.apache.spark.sql.cassandra') \
+			.mode('append') \
 			.option('keyspace', 'market') \
 			.option('table', 'msc') \
 			.save()
