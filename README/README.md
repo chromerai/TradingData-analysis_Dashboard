@@ -21,6 +21,27 @@ First begin by cloning the repository using the following command to ensure all 
 ```
 git clone --recurse-submodules git@github.com:ayush1399/TradingData-Dashboard.git
 ```
+If you don't have docker set up on your system, you can do so by:
+```
+sudo apt-get update
+
+sudo apt-get install ca-certificates curl gnupg
+
+sudo install -m 0755 -d /etc/apt/keyrings
+
+curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+
+echo \
+  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
+  "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+sudo apt-get update
+
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+```
 
 ### Setting up Kafka
 ```
@@ -81,7 +102,7 @@ presto-cli
 
 show catalogs;
 ```
-If the cassandra does not show after running the show catalogs command, run the next step of commands.
+If cassandra does not show up as a catalog after running the show catalogs command, run the next set of commands.
 ```
 docker restart <container>
 
