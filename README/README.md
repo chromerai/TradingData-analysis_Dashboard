@@ -1,6 +1,12 @@
 # Real Time Stream Processing and Analysis of Trading Data
 **CSGY-6513 Big Data Spring 2023, Final Project (Group 3)**
-## Introduction
+
+* Superset Dashboard with live data stream can be accessed at the following link: http://155.138.134.6:8088/superset/dashboard/11/
+    * User: demo
+    * Password: bigdatafinalproject
+* The Streamlit dashboard with the Monte Carlo based Geometric Brownian motion analysis of trade data can be accessed at the following link: http://155.138.134.6/streamlit
+## Metrics
+## Project Description
 ## Group Members
 * Ayushman Singh (as16513)
 * Kaustubh Mishra (km5939)
