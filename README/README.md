@@ -15,6 +15,11 @@
 * Shekhar Pandey (cp3793)
 
 ## Screenshots
+ ### Superset Dashboard
+[Superset Dashboard Screenshot](./SupersetScreencap.jpg)
+ ### Streamlit Dashboard
+
+
 ## Setup Instructions
 NOTE - The below commands were tested and verified on Debian 11 Bullseye system. Setting up the pipeline on a Mac or Windows machine may require changes to the configuration (host network bridging is only supported by docker in linux, and the services in the pipeline utilize it to communicate with each other).
 
