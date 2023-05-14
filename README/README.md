@@ -10,6 +10,7 @@ First begin by cloning the repository using the following command to ensure all 
 git clone --recurse-submodules git@github.com:ayush1399/TradingData-Dashboard.git
 ```
 
+### Setting up Kafka
 ```
 cd kafka
 docker compose up --build -d
@@ -21,6 +22,7 @@ kafka-topics --bootstrap-server broker:29092 --list
 kafka-topics --bootstrap-server broker:29092 --create --if-not-exists --topic market --replication-factor 1 --partitions 1
 ```
 
+### Setting up the Cassandra Cluster
 ```
 cd cassandra
 docker compose up --build -d
@@ -29,6 +31,7 @@ docker exec -it <container> /bin/bash
 cqlsh -u cassandra -p cassandra -f ./cassandra-setup.cql
 ```
 
+### Setting up the spark cluster and stream-processor
 ```
 cd stream-processor
 docker compose up --build -d
