@@ -28,30 +28,33 @@ def fetch_ticker(ticker):
 
 
 def line_plot(pdf, ticker):
-    plt.figure(figsize=(10, 5))
-    plt.plot(pdf["timestamp"], pdf["actual"], label="Actual")
-    plt.plot(pdf["timestamp"], pdf["gbm"], label="Predicted")
-    plt.xlabel("Date")
-    plt.ylabel("Price")
-    plt.title(f"{ticker} Price Over Time")
-    plt.legend()
-    plt.show()
-
+    fig, ax = plt.subplot()
+    # plt.figure(figsize=(10, 5))
+    ax.plot(pdf["timestamp"], pdf["actual"], label="Actual")
+    ax.plot(pdf["timestamp"], pdf["gbm"], label="Predicted")
+    ax.xlabel("Date")
+    ax.ylabel("Price")
+    ax.title(f"{ticker} Price Over Time")
+    ax.legend()
+    ax.show()
+    st.pyplot(fig)
 
 def histogram(pdf, ticker):
-    plt.figure(figsize=(10, 5))
-    plt.hist(pdf["gbm"], bins=30)
-    plt.xlabel("Price")
-    plt.ylabel("Frequency")
-    plt.title(f"Distribution of Predicted Prices for {ticker}")
-    plt.show()
-
+    fig, ax = plt.subplot()
+#    plt.figure(figsize=(10, 5))
+    ax.hist(pdf["gbm"], bins=30)
+    ax.xlabel("Price")
+    ax.ylabel("Frequency")
+    ax.title(f"Distribution of Predicted Prices for {ticker}")
+    ax.show()
+    st.pyplot(fig)
 
 def density_plot(pdf, ticker):
-    pdf["gbm"].plot(kind="density")
-    plt.xlabel("Price")
-    plt.title(f"Density of Predicted {ticker} Prices")
-    plt.show()
+    fig, ax = pdf["gbm"].plot(kind="density")
+    ax.xlabel("Price")
+    ax.title(f"Density of Predicted {ticker} Prices")
+    ax.show()
+    st.pyplot(fig)
 
 
 def generate_plots_for_ticker(ticker):
@@ -71,6 +74,6 @@ TICKERS = [
     "BINANCE:DOGEUSDT",
 ]
 
-if __name__ == "__main__":
-    for ticker in TICKERS:
+for ticker in TICKERS:
+	st.title(f'GBM Analysis Visualization - {ticker}')
         generate_plots_for_ticker(ticker)

@@ -5,6 +5,9 @@ name = "pypi"
 
 [packages]
 streamlit = "*"
+cassandra-driver = "*"
+pandas = "*"
+matplotlib = "*"
 
 [dev-packages]
 
