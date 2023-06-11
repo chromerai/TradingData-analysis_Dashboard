@@ -1,0 +1,6 @@
+export FINNHUB_API_TOKEN="ch8mtupr01qtgm5dom2gch8mtupr01qtgm5dom30"
+export FINNHUB_STOCKS_TICKERS="[\"BINANCE:BTCUSDT\",\"BINANCE:ETHUSDT\",\"BINANCE:XRPUSDT\",\"BINANCE:DOGEUSDT\", \"AAPL\", \"MSFT\", \"AMZN\"]"
+export FINNHUB_VALIDATE_TICKERS="1"
+export KAFKA_SERVER="localhost"
+export KAFKA_PORT="9092"
+export KAFKA_TOPIC_NAME="market"
